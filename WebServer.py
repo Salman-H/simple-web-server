@@ -19,3 +19,17 @@ serverSocket.bind(('',serverPort))
 serverSocket.listen(1)
 
 print 'The server is ready to receive'
+
+while True:
+	# Establish the connection
+	print 'Ready to serve...'
+
+	# Create a client TCP socket
+	# Connection socket will be created when
+	# contacted by a client (browser)
+	connectionSocket, addr = serverSocket.accept()
+
+	try:
+		# Receive the HTTP request from this connection
+		message = connectionSocket.recv(1024)	# The connection has received the
+												# message from 1024, or the client

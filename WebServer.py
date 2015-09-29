@@ -33,3 +33,20 @@ while True:
 		# Receive the HTTP request from this connection
 		message = connectionSocket.recv(1024)	# The connection has received the
 												# message from 1024, or the client
+
+		filename = message.split()[1]
+		f = open(filename[1:])
+		
+		# Read the file and 
+		# store its contents in outputdata
+		outputdata = f.read()
+		
+		# Send HTTP Response Status line into the socket
+		connectionSocket.send("HTTP/1.1 200 OK\r\n\r\n")
+														
+		# Send the content of the requested file to the client
+		for i in range(0, len(outputdata)):
+			connectionSocket.send(outputdata[i])
+		
+		# Close client socket
+		connectionSocket.close()

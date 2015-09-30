@@ -50,3 +50,10 @@ while True:
 		
 		# Close client socket
 		connectionSocket.close()
+
+	except IOError:
+		# Send response message for file not found
+		# your code here
+		outputdata = '404 Not Found'
+		connectionSocket.send("HTTP/1.1 404 Not Found\r\n\r\n")
+		connectionSocket.send(outputdata)

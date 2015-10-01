@@ -48,7 +48,7 @@ while True:
 		for i in range(0, len(outputdata)):
 			connectionSocket.send(outputdata[i])
 		
-		# Close client socket
+		# Close client TCP socket
 		connectionSocket.close()
 
 	except IOError:
@@ -57,3 +57,10 @@ while True:
 		outputdata = '404 Not Found'
 		connectionSocket.send("HTTP/1.1 404 Not Found\r\n\r\n")
 		connectionSocket.send(outputdata)
+		
+		# Close client TCP socket
+		connectionSocket.close()
+
+# Close server TCP socket
+serverSocket.close()
+
